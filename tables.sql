@@ -15,7 +15,6 @@ CREATE TABLE Products (
     product_id INT NOT NULL, 
     department_id INT NOT NULL, 
     name CHAR(255) NOT NULL,
-    keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
     price INT NOT NULL,
     discount INT,
@@ -25,6 +24,13 @@ CREATE TABLE Products (
     isFeatured BOOLEAN NOT NULL, 
     PRIMARY KEY (product_id), 
     FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+);
+
+CREATE TABLE ProdutKeywordMap (
+    keyword VARCHAR(255) NOT NULL,
+    product_id INT NOT NULL,
+    PRIMARY KEY (keyword),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
 CREATE TABLE Users (
