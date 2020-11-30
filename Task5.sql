@@ -1,12 +1,11 @@
 use `ht20_2_project_group_7`;
 
-
+/*
 -- visar meddelandet
 SELECT description 
 FROM Departments
 WHERE department_id=0;
 
-/*
 -- visar toplevel departments
 SELECT * 
 FROM Departments
@@ -33,4 +32,3 @@ FROM Products
 WHERE discount > 0 
 ORDER BY price;
 */
-
