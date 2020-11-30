@@ -29,7 +29,6 @@ CREATE TABLE Products (
 CREATE TABLE ProdutKeywordMap (
     keyword VARCHAR(255) NOT NULL,
     product_id INT NOT NULL,
-    PRIMARY KEY (keyword),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
