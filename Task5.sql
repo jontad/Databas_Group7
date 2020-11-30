@@ -1,34 +1,35 @@
 use `ht20_2_project_group_7`;
 
-/*
 -- visar meddelandet
 SELECT description 
 FROM Departments
 WHERE department_id=0;
 
 -- visar toplevel departments
-SELECT * 
+SELECT name, description, path
 FROM Departments
-WHERE department_id > 0 AND department_id < 9;
+WHERE parent_id=0;
 
 -- Visar produkterna
-SELECT * 
-FROM Products;
+SELECT name, description, price, link 
+FROM Products
+WHERE isFeatured=1;
 
 -- Givet produktkeyword, lista liknande 
-SELECT * 
+SELECT name, keyword 
 FROM Products
-WHERE keyword= "bok"; -- OBS funkar atm inte för multiple keywords! (loop?)
+WHERE keyword LIKE '%dator%'; -- OBS funkar atm inte för multiple keywords! (loop?)
 
--- Nästa (Recursive find) - Funkar inte , den visar allt
-SELECT Products.name,  Departments.department_id,  Products.description, Products.price
+SELECT name, description, price
 FROM Products
-INNER JOIN Departments ON Products.department_id=Departments.department_id;
+WHERE department_id=111;
 
+SELECT AVG(stars)
+FROM Reviews
+WHERE product_id=111;
 
 -- Visar alla produkter med rabatt
-SELECT * 
+SELECT name, price, discount 
 FROM Products
 WHERE discount > 0 
-ORDER BY price;
-*/
+ORDER BY price DESC;
