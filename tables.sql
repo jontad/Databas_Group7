@@ -8,12 +8,13 @@ CREATE TABLE Departments (
 	parent_id INT, 
     path TEXT NOT NULL,  -- breadcrumb
     PRIMARY KEY(department_id),
-    FOREIGN KEY(parent_id) REFERENCES Departments(department_id)  -- Optional foreign keys? 
+    FOREIGN KEY(parent_id) REFERENCES Departments(department_id) 
+     ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Products (
     product_id INT NOT NULL, 
-    department_id INT NOT NULL, 
+    department_id INT, 
     name CHAR(255) NOT NULL,
     keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE Products (
     isFeatured BOOLEAN NOT NULL, 
     PRIMARY KEY (product_id), 
     FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+     ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Users (
@@ -47,14 +49,17 @@ CREATE TABLE Orders (
     created_at DATETIME NOT NULL, 
     updated_at DATETIME NOT NULL, 
     PRIMARY KEY (order_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE OrderProductMap (
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)  
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(product_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Reviews (
@@ -64,6 +69,9 @@ CREATE TABLE Reviews (
     stars INT NOT NULL, 
     comment CHAR(255) NOT NULL,
     PRIMARY KEY (review_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(product_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
+    
 );
