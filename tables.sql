@@ -2,8 +2,8 @@
 use `ht20_2_project_group_7`;
 
 CREATE TABLE DEPARTMENTS (
-    department_id TEXT, 
-    parent_id TEXT, 
+    department_id CHAR(255), 
+    parent_id CHAR(255), 
     name CHAR(255) NOT NULL, 
     description TEXT NOT NULL,
     PRIMARY KEY(department_id),
@@ -13,7 +13,7 @@ CREATE TABLE DEPARTMENTS (
 
 CREATE TABLE PRODUCTS (
     product_id INT NOT NULL, 
-    department_id TEXT, 
+    department_id CHAR(255), 
     name CHAR(255) NOT NULL,
     keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE REVIEWS (
     stars INT NOT NULL, 
     comment CHAR(255) NOT NULL,
     PRIMARY KEY (review_id),
-    CHECK(stars BETWEEN 0 AND 5)
+    CHECK(stars BETWEEN 0 AND 5),
     FOREIGN KEY (user_id) REFERENCES USERS(user_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) 

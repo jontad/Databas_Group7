@@ -8,11 +8,11 @@ INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
 VALUES (3, 3, 3, 4, "Hatar calculus, älskar boken");
 
 INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
-VALUES (4, 4, 4, 2, "Köp en annan");
+VALUES (4, 1, 4, 2, "Köp en annan");
 
 INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
-VALUES (5, 5, 5, 0, "nej");
+VALUES (5, 2, 5, 0, "nej");
 
 INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
-VALUES (7, 7, 7, 4, "Bra tablet! Mina barn älskar den.");
+VALUES (7, 3, 7, 4, "Bra tablet! Mina barn älskar den.");
 

@@ -3,14 +3,17 @@ use `ht20_2_project_group_7`;
 -- visar meddelandet
 SELECT description 
 FROM DEPARTMENTS
-WHERE department_id LIKE 'home/'
+WHERE department_id = 'home/';
 
 -- visar toplevel departments
+DROP TABLE IF EXISTS TOPLEVELDEPT;
 CREATE TEMPORARY TABLE TOPLEVELDEPT (
   department VARCHAR(50)
 );
+
 INSERT INTO TOPLEVELDEPT 
-VALUES ('%electronics'), ('%apparel'), ('%books'), ('%health');
+VALUES ("home/electronics/"), ("home/apparel/"), 
+("home/books/"), ("home/health/"), ("home/decoration/");
 
 SELECT name, description, department_id 
 FROM DEPARTMENTS AS D JOIN TOPLEVELDEPT AS T ON (T.department LIKE D.department_id);
@@ -25,12 +28,13 @@ SELECT name, keyword
 FROM PRODUCTS
 WHERE keyword LIKE '%dator%';
 
+-- Visar produkt med average rating
 SELECT P.name, P.description, P.price,  AVG(R.stars)
 FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id)
-WHERE P.department_id = "home/books/auto-bio";
+WHERE P.department_id = "home/electronics/computer/laptop/";
 
 -- Visar alla produkter med rabatt
 SELECT name, price, discount 
 FROM PRODUCTS
 WHERE discount > 0 
-ORDER BY price DESC;
+ORDER BY discount DESC;
