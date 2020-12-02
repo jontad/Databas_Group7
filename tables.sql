@@ -1,18 +1,18 @@
 -- Strukturen för databasen - alla tabeller 
 use `ht20_2_project_group_7`;
 
-CREATE TABLE Departments (
+CREATE TABLE DEPARTMENTS (
     department_id INT NOT NULL, 
     name CHAR(255) NOT NULL, 
     description TEXT NOT NULL,
 	parent_id INT, 
     path TEXT NOT NULL,  -- breadcrumb
     PRIMARY KEY(department_id),
-    FOREIGN KEY(parent_id) REFERENCES Departments(department_id) 
+    FOREIGN KEY(parent_id) REFERENCES DEPARTMENTS(department_id) 
      ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-CREATE TABLE Products (
+CREATE TABLE PRODUCTS (
     product_id INT NOT NULL, 
     department_id INT, 
     name CHAR(255) NOT NULL,
@@ -25,11 +25,11 @@ CREATE TABLE Products (
     link TEXT, 
     isFeatured BOOLEAN NOT NULL, 
     PRIMARY KEY (product_id), 
-    FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+    FOREIGN KEY (department_id) REFERENCES DEPARTMENTS(department_id)
      ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-CREATE TABLE Users (
+CREATE TABLE USERS (
 	user_id INT NOT NULL, 
     personal_nr INT NOT NULL, 
     name CHAR(255) NOT NULL, 
@@ -40,7 +40,7 @@ CREATE TABLE Users (
     PRIMARY KEY (user_id)
 );
 
-CREATE TABLE Orders (
+CREATE TABLE ORDERS (
     order_id INT NOT NULL, 
     user_id INT NOT NULL, 
     payment_ref INT NOT NULL, 
@@ -49,16 +49,16 @@ CREATE TABLE Orders (
     created_at DATETIME NOT NULL, 
     updated_at DATETIME NOT NULL, 
     PRIMARY KEY (order_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE OrderProductMap (
+CREATE TABLE ORDERPRODUCTMAP (
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id)  
+    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id)  
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES Products(product_id) 
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -69,9 +69,9 @@ CREATE TABLE Reviews (
     stars INT NOT NULL, 
     comment CHAR(255) NOT NULL,
     PRIMARY KEY (review_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) 
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES Products(product_id) 
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) 
         ON DELETE CASCADE ON UPDATE CASCADE
     
 );
