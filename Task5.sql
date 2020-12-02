@@ -29,7 +29,7 @@ FROM PRODUCTS
 WHERE keyword LIKE '%dator%';
 
 -- Visar produkt med average rating
-SELECT P.name, P.description, P.price,  AVG(R.stars)
+SELECT P.name, P.description, P.price, AVG(stars) AS average_rating
 FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id)
 WHERE P.department_id = "home/electronics/computer/laptop/";
 
