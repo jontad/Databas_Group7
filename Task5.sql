@@ -1,6 +1,6 @@
 use `ht20_2_project_group_7`;
 
--- Index
+-- Index. Create once
 /*CREATE INDEX department_id_idx 
 ON DEPARTMENTS (department_id);
 */
