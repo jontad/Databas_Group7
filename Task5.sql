@@ -20,13 +20,9 @@ SELECT name, keyword
 FROM PRODUCTS
 WHERE keyword LIKE '%dator%'; -- OBS funkar atm inte för multiple keywords! (loop?)
 
-SELECT name, description, price
-FROM PRODUCTS
+SELECT P.name, P.description, P.price,  AVG(R.stars)
+FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id)
 WHERE department_id=111;
-
-SELECT AVG(stars)
-FROM Reviews
-WHERE product_id=111;
 
 -- Visar alla produkter med rabatt
 SELECT name, price, discount 
