@@ -10,7 +10,6 @@ FROM DEPARTMENTS
 WHERE department_id = 'home/';
 
 -- visar toplevel departments
-DROP TABLE IF EXISTS TOPLEVELDEPT;
 CREATE TEMPORARY TABLE TOPLEVELDEPT (
   department VARCHAR(50)
 );
@@ -21,6 +20,8 @@ VALUES ("home/electronics/"), ("home/apparel/"),
 
 SELECT name, description, department_id 
 FROM DEPARTMENTS AS D JOIN TOPLEVELDEPT AS T ON (T.department LIKE D.department_id);
+
+DROP TABLE TOPLEVELDEPT;
 
 -- Visar produkterna
 SELECT name, description, price, link 
