@@ -1,5 +1,9 @@
 use `ht20_2_project_group_7`;
 
+-- Index
+/*CREATE INDEX department_id_idx 
+ON DEPARTMENTS (department_id);
+*/
 -- visar meddelandet
 SELECT description 
 FROM DEPARTMENTS
