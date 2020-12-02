@@ -2,11 +2,10 @@
 use `ht20_2_project_group_7`;
 
 CREATE TABLE DEPARTMENTS (
-    department_id INT NOT NULL, 
+    department_id TEXT, 
+    parent_id TEXT, 
     name CHAR(255) NOT NULL, 
     description TEXT NOT NULL,
-	parent_id INT, 
-    path TEXT NOT NULL,  -- breadcrumb
     PRIMARY KEY(department_id),
     FOREIGN KEY(parent_id) REFERENCES DEPARTMENTS(department_id) 
      ON DELETE SET NULL ON UPDATE CASCADE
@@ -14,7 +13,7 @@ CREATE TABLE DEPARTMENTS (
 
 CREATE TABLE PRODUCTS (
     product_id INT NOT NULL, 
-    department_id INT, 
+    department_id TEXT, 
     name CHAR(255) NOT NULL,
     keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
@@ -62,13 +61,14 @@ CREATE TABLE ORDERPRODUCTMAP (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Reviews (
+CREATE TABLE REVIEWS (
     review_id INT NOT NULL, 
     user_id INT NOT NULL, 
     product_id INT NOT NULL, 
     stars INT NOT NULL, 
     comment CHAR(255) NOT NULL,
     PRIMARY KEY (review_id),
+    CHECK(stars BETWEEN 0 AND 5)
     FOREIGN KEY (user_id) REFERENCES USERS(user_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) 

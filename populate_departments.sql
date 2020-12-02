@@ -1,62 +1,60 @@
 -- Speciella "homepage" - department
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (0, "Homepage", "Welcome to homepage", NULL, "home/");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/", NULL, "Homepage", "Welcome to homepage");
 
 -- Toplevel - department:
 -- EX:indexering = parent_id (home) & department_id (electronics)  => 01 
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (01, "Electronics", "top level", 0, "home/electronics");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics", "home/", "Electronics", "top level");
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (02, "Apparel and accessories", "top level", 0, "home/apparel");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/apparel", "home/", "Apparel and accessories", "top level");
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (03, "Books", "top level", 0, "home/books");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/books", "home/", "Books", "top level");
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (04, "Health and Beauty", "top level", 0, "home/health");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/health", "home/", "Health and Beauty", "top level");
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
 VALUES (05, "Home decor and furnitures", "top level", 0, "home/decoration");
 
--- Child - DEPARTMENTS - första level:
--- EX: indexering = parent_id (home/electronics) & department_id (computer and tablets) => 011 
+-- Child - DEPARTMENTS(department_id, parent_id, name, description)parent_id (home/electronics) & department_id (computer and tablets) => 011 
 
 -- Electronics:
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (011, "Computer and tablets", "second level", 01, "home/electronics/computer");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics/computer", "home/electronics/", "Computer and tablets", "second level");
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (012, "Video game and consoles", "second level", 01, "home/electronics/console"); 
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics/console", "home/electronics/", "Video game and consoles", "second level"); 
 
 -- Books:
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (031, "Autobiographies", "second level", 03, "home/books/auto-bio"); -- Leaf!
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/books/auto-bio", "home/books/", "Autobiographies", "second level"); -- Leaf!
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (032, "DIY", "second level", 03, "home/books/diy"); -- Leaf!
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/books/diy", "home/books/", "DIY", "second level"); -- Leaf!
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (039, "Course Litterature", "second level", 03, "home/books/course"); 
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/books/course", "home/books/", "Course Litterature", "second level"); 
 
--- Child - DEPARTMENTS - andra level:
--- EX: indexering = parent_id (home/electronics/computer) & department_id (computer and tablets) => 0111 
+-- Child - DEPARTMENTS(department_id, parent_id, name, description)parent_id (home/electronics/computer) & department_id (computer and tablets) => 0111 
 
 -- Electronics:
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (0111, "Desktop", "third level", 011, "home/electronics/computer/desktop"); -- leaf
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics/computer/desktop", "home/electronics/computer/", "Desktop", "third level"); -- leaf
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (0112, "laptop", "third level", 011, "home/electronics/computer/laptop"); -- leaf
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics/computer/laptop", "home/electronics/computer/", "laptop", "third level"); -- leaf
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (0113, "tablet", "third level", 011, "home/electronics/computer/tablet"); -- leaf
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/electronics/computer/tablet", "home/electronics/computer/", "tablet", "third level"); -- leaf
 
 -- Books
 
-INSERT INTO DEPARTMENTS(department_id, name, description, parent_id, path)
-VALUES (0391, "Mathmatics", "Third level", 039, "home/books/course/maths");
+INSERT INTO DEPARTMENTS(department_id, parent_id, name, description)
+VALUES ("home/books/course/maths", "home/books/course/" "Mathmatics", "Third level");
 
 
 

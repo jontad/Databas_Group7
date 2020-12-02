@@ -1,26 +1,27 @@
 -- Lägger in produkter
 -- Böcker
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (1, 031, "Att andas frihet", "bok", "En självbiografi om Putin", 149, 0, 25, 73, "/404-not-found", 1);
+VALUES (1, "home/books/auto-bio", "Att andas frihet", "bok", "En självbiografi om Putin", 149, 0, 25, 73, "/404-not-found", 1);
 
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (2, 032, "Löda 101", "bok", "En bok för dig som vill löda", 299, 0, 25, 73, "/404-not-found", 0);
+VALUES (2, "home/books/diy", "Löda 101", "bok", "En bok för dig som vill löda", 299, 0, 25, 73, "/404-not-found", 0);
 
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (3, 0391, "Calculus - the complete course!", "bok", " The must have book for calculus", 1490, 0, 25, 2, "/404-not-found", 0 );
+VALUES (3,  "home/books/course/maths", "Calculus - the complete course!", "bok", " The must have book for calculus", 1490, 0, 25, 2, "/404-not-found", 0 );
 
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (6, 0391, "Ett vadslag med verkligheten", "bok", "Introduktion till komplexa tal", 149, 0, 25, 2, "/404-not-found", 0);
+VALUES (6, "home/books/course/maths", "Ett vadslag med verkligheten", "bok", "Introduktion till komplexa tal", 149, 0, 25, 2, "/404-not-found", 0);
 
 -- Elektronik
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (4, 0111, "Imba-Config X1", "dator", "optimised", 9900, 10, 25, 84, "/404-not-found", 0);
+VALUES (4, "home/electronics/computer/desktop", "Imba-Config X1", "dator", "optimised", 9900, 10, 25, 84, "/404-not-found", 0);
 
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (5, 0112, "Alienware 1", "dator, laptop", "Imba", 19900, 10, 25, 84, "/404-not-found", 0);
+VALUES (5, "home/electronics/computer/laptop", "Alienware 1", "dator, laptop", "Imba", 19900, 10, 25, 84, "/404-not-found", 0);
 
 INSERT INTO PRODUCTS (product_id, department_id, name, keyword, description, price, discount, vat_fee, stock_qt, link, isFeatured)
-VALUES (7, 0113, "Windows tablet", "dator, tablet", "Good", 5900, 10, 25, 84, "/404-not-found", 0);
+VALUES (7, "home/electronics/computer/tablet", "Windows tablet", "dator, tablet", "Good", 5900, 10, 25, 84, "/404-not-found", 0);
+
 
 /*
 Måste ändra formatet
