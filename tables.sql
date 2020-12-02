@@ -2,18 +2,18 @@
 use `ht20_2_project_group_7`;
 
 CREATE TABLE DEPARTMENTS (
-    department_id CHAR(255), 
+    dept_id CHAR(255), 
     parent_id CHAR(255), 
     name CHAR(255) NOT NULL, 
     description TEXT NOT NULL,
-    PRIMARY KEY(department_id),
-    FOREIGN KEY(parent_id) REFERENCES DEPARTMENTS(department_id) 
+    PRIMARY KEY(dept_id),
+    FOREIGN KEY(parent_id) REFERENCES DEPARTMENTS(dept_id) 
      ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE PRODUCTS (
     product_id INT NOT NULL, 
-    department_id CHAR(255), 
+    dept_id CHAR(255), 
     name CHAR(255) NOT NULL,
     keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE PRODUCTS (
     link TEXT, 
     isFeatured BOOLEAN NOT NULL, 
     PRIMARY KEY (product_id), 
-    FOREIGN KEY (department_id) REFERENCES DEPARTMENTS(department_id)
+    FOREIGN KEY (dept_id) REFERENCES DEPARTMENTS(dept_id)
      ON DELETE SET NULL ON UPDATE CASCADE
 );
 
