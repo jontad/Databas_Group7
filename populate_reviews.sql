@@ -14,5 +14,8 @@ INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
 VALUES (5, 2, 5, 0, "nej");
 
 INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
+VALUES (6, 1, 5, 4, "Älskar!");
+
+INSERT INTO REVIEWS(review_id, user_id, product_id, stars, comment)
 VALUES (7, 3, 7, 4, "Bra tablet! Mina barn älskar den.");
 
