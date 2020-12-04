@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-
+# Search the DB for product and shows them
 product_id = input("Product ID: ")
 get_products = """SELECT name, discount
 FROM PRODUCTS
@@ -23,7 +23,7 @@ print("Product Name\t Discount")
 for x in myresult:
     print(str(x[0])+"\t"+str(x[1]))
 
-
+# Possibility to change discount
 answer = input("Change discount? [y/n]: ")
 
 if answer.lower() == 'y':
@@ -39,7 +39,7 @@ if answer.lower() == 'y':
 
     print("Product Name\t Discount")
     for x in myresult:
-        print(str(x[0])+"\t"+str(x[1]))
+        print(str(x[0])+ "   \t   "+str(x[1]))
 
 
 mydb.commit()
