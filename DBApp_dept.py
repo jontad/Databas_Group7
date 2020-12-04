@@ -15,23 +15,29 @@ mycursor = mydb.cursor()
 
 # Lists all products of leafs. Else lists child departments
 dept_input = input("Department ID: ")
-get_leafs = """SELECT P.dept_id, P.name, P.price
-FROM DEPARTMENTS AS D JOIN PRODUCTS AS P ON D.dept_id=P.dept_id
-WHERE P.dept_id = """ + dept_input + """ AND D.leaf = 1"""
+query = "SELECT P.dept_id, P.name, P.price FROM DEPARTMENTS AS D JOIN PRODUCTS AS P ON D.dept_id=P.dept_id WHERE P.dept_id = %s AND D.leaf = 1"
 
-
-mycursor.execute(get_leafs)
-
-# ELSE RETRIEVE CHILDREN
-#y = dept_input.replace(dept_input, '')
-
+mycursor.execute(query, (dept_input,))
 
 myresult = mycursor.fetchall()
-
-print("Getleaf: " + str(myresult))
 
 print("EANHotelID\t Name")
 for x in myresult:
     print(str(x[0])+"\t"+x[1])
+
+###################################
+
+query = "SELECT dept_id, name FROM DEPARTMENTS WHERE dept_id LIKE %s%' AND dept_id != %s"
+# mycursor.execute(
+#query, (dept_input, dept_input)
+# )
+
+print(query % (dept_input, dept_input))
+
+""" myresult = mycursor.fetchall()
+print("EANHotelID\t Name")
+for x in myresult:
+    print(str(x[0])+"\t"+x[1])
+ """
 
 mydb.close()
