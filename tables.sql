@@ -4,6 +4,7 @@ use `ht20_2_project_group_7`;
 CREATE TABLE DEPARTMENTS (
     dept_id CHAR(255), 
     parent_id CHAR(255), 
+    leaf BOOLEAN NOT NULL, 
     name CHAR(255) NOT NULL, 
     description TEXT NOT NULL,
     PRIMARY KEY(dept_id),

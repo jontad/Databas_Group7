@@ -1,9 +1,12 @@
 use `ht20_2_project_group_7`;
 
 -- Index. Create once
-/*CREATE INDEX department_id_idx 
+/*CREATE INDEX dept_id_idx 
 ON DEPARTMENTS (dept_id);
 */
+-- DROP INDEX dept_id_idx ON DEPARTMENTS;
+SHOW INDEX FROM DEPARTMENTS;
+
 -- visar meddelandet
 SELECT description 
 FROM DEPARTMENTS
