@@ -10,37 +10,47 @@ mydb = mysql.connector.connect(
     database="ht20_2_project_group_" + group_number
 )
 
+table_align_format = "{0:20} {1:20} {2:10} {3:10}"
+result =[]
+
 mycursor = mydb.cursor()
-# Search the DB for product and shows them
-product_id = input("Product ID: ")
-get_products = """SELECT name, discount
-FROM PRODUCTS
-WHERE product_id = """ + product_id
+# Search the DB for product and if found displays them
+while not result:
+    while True:
+        try:
+            product_id = int(input("Please input product ID: "))
+            break
+        except:
+            print("That's not a valid option!")
 
-mycursor.execute(get_products)
-myresult = mycursor.fetchall()
-print("Product Name\t Discount")
-for x in myresult:
-    print(str(x[0])+"\t"+str(x[1]))
+    product_id = str(product_id)
+    get_products = """SELECT name, keyword, price, discount FROM PRODUCTS WHERE product_id = """ + product_id
+    mycursor.execute(get_products)
+    result = mycursor.fetchall()
+    if not result:
+        print("Item does not exist!")
 
-# Possibility to change discount
-answer = input("Change discount? [y/n]: ")
+print("This is the sought product: ")
+print(table_align_format.format("Product: ", "Keyword: ", "Price: ","Discount: "))
+print("------------------------------------------------------------------------")
+for name, keyword, price, discount in result:
+    print(table_align_format.format(name, keyword, price, discount))
 
+# Possibility to change discount - if yes, update DB
+answer = input("Would you like to change the discount? [y/n]: ")
 if answer.lower() == 'y':
-    discount = input("New discount: ")
-
-    updated_product = """UPDATE PRODUCTS
-    SET discount = """ + discount + """
-    WHERE product_id = """ + product_id
-
+    discount = input("Please input new discount: ")
+    updated_product = """UPDATE PRODUCTS SET discount = """ + discount + """ WHERE product_id = """ + product_id
     mycursor.execute(updated_product)
     mycursor.execute(get_products)
-    myresult = mycursor.fetchall()
+    result = mycursor.fetchall()
 
-    print("Product Name\t Discount")
-    for x in myresult:
-        print(str(x[0])+ "   \t   "+str(x[1]))
-
-
-mydb.commit()
+    print("Discount has been updated!:  ")
+    print(table_align_format.format("Product: ", "Keyword: ", "Price: ", "Discount: "))
+    print("-------------------------------------------------------------------------")
+    for name, keyword, price, discount in result:
+        print(table_align_format.format(name, keyword, price, discount))
+    mydb.commit()
+else:
+    print("No change has been made!")
 mydb.close()

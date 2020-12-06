@@ -11,12 +11,17 @@ mydb = mysql.connector.connect(
 )
 table_align_format = "{0:30} {1}"
 table_align_format2 = "{0:35} {1:30} {2}"
+result = []
 # Ask for department and make request from DB
 mycursor = mydb.cursor()
-dept_input = str(input("Department ID: "))
-mycursor.execute(f"SELECT name, dept_id FROM DEPARTMENTS WHERE dept_id LIKE '%{dept_input}%'") #+ "'%"+dept_input+"%'")
-result = mycursor.fetchall()
-result_length = len(result)
+
+while not result:
+    dept_input = str(input("Please input department ID: "))
+    mycursor.execute(f"SELECT name, dept_id FROM DEPARTMENTS WHERE dept_id LIKE '%{dept_input}%'")
+    result = mycursor.fetchall()
+    result_length = len(result)
+    if not result:
+        print("Department does not exist!")
 
 if result_length > 1:
 # Path is a node - Lists all departments with same path
@@ -25,7 +30,6 @@ if result_length > 1:
     print("-----------------------------------------")
     for name,path in result:
         print(table_align_format.format(name,path))
-        #print(str(x[0])+"\t"+str(x[1]))
 else:
 # Path is a leaf - Lists all products of leafs
     query = f"SELECT P.name,P.dept_id, P.price FROM DEPARTMENTS AS D JOIN PRODUCTS AS P ON D.dept_id=P.dept_id WHERE P.dept_id = '{dept_input}' AND D.leaf = 1"
