@@ -1,11 +1,11 @@
 use `ht20_2_project_group_7`;
 
 -- Index. Create once
-/*CREATE INDEX dept_id_idx 
-ON DEPARTMENTS (dept_id);
-*/
--- DROP INDEX dept_id_idx ON DEPARTMENTS;
-SHOW INDEX FROM DEPARTMENTS;
+/*CREATE INDEX isFeatured_idx 
+ON PRODUCTS(isFeatured);*/
+
+-- DROP INDEX isFeatured_idx ON PRODUCTS;
+-- SHOW INDEX FROM DEPARTMENTS;
 
 -- visar meddelandet
 SELECT description 
@@ -27,7 +27,7 @@ FROM DEPARTMENTS AS D JOIN TOPLEVELDEPT AS T ON (T.department LIKE D.dept_id);
 DROP TABLE TOPLEVELDEPT;
 
 -- Visar produkterna
-SELECT name, description, price, link 
+EXPLAIN SELECT name, description, price, link 
 FROM PRODUCTS
 WHERE isFeatured=1;
 
