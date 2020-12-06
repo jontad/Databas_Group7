@@ -5,7 +5,7 @@ use `ht20_2_project_group_7`;
 ON PRODUCTS(isFeatured);*/
 
 -- DROP INDEX isFeatured_idx ON PRODUCTS;
--- SHOW INDEX FROM DEPARTMENTS;
+-- SHOW INDEX FROM PRODUCTS;
 
 -- visar meddelandet
 SELECT description 
