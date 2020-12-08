@@ -1,18 +1,11 @@
 use `ht20_2_project_group_7`;
 
--- Index. Create once
-/*CREATE INDEX isFeatured_idx 
-ON PRODUCTS(isFeatured);*/
-
--- DROP INDEX isFeatured_idx ON PRODUCTS;
--- SHOW INDEX FROM PRODUCTS;
-
--- visar meddelandet
+-- Welcome text for the Home page 
 SELECT description 
 FROM DEPARTMENTS
 WHERE dept_id = 'home/';
 
--- visar toplevel departments
+-- List of the top level departments 
 CREATE TEMPORARY TABLE TOPLEVELDEPT (
   department VARCHAR(50)
 );
@@ -26,22 +19,30 @@ FROM DEPARTMENTS AS D JOIN TOPLEVELDEPT AS T ON (T.department LIKE D.dept_id);
 
 DROP TABLE TOPLEVELDEPT;
 
--- Visar produkterna
+-- List of the featured products
 EXPLAIN SELECT name, description, price, link 
 FROM PRODUCTS
 WHERE isFeatured=1;
 
--- Givet produktkeyword, lista liknande 
-SELECT name, keyword 
-FROM PRODUCTS
-WHERE keyword LIKE '%dator%';
+-- Given a product, list all keyword-related products
+SELECT * 
+FROM PRODUCTS 
+WHERE product_id IN(
+	SELECT product_id 
+	FROM PRODUCTKEYWORDMAP 
+	WHERE keyword IN(
+		SELECT keyword 
+		FROM PRODUCTKEYWORDMAP 
+		WHERE product_id = 25
+    )
+);
 
--- Visar produkt med average rating
+-- Given a department, list all of its products with average rating
 SELECT P.name, P.description, P.price, AVG(stars) AS average_rating
 FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id)
 WHERE P.dept_id = "home/electronics/computer/laptop/";
 
--- Visar alla produkter med rabatt
+-- List all products on sale sorted by discount %
 SELECT name, price, discount 
 FROM PRODUCTS
 WHERE discount > 0 

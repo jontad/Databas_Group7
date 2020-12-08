@@ -16,7 +16,6 @@ CREATE TABLE PRODUCTS (
     product_id INT NOT NULL, 
     dept_id CHAR(255), 
     name CHAR(255) NOT NULL,
-    keyword VARCHAR(255) NOT NULL, 
     description TEXT NOT NULL,
     price INT NOT NULL,
     discount INT,
@@ -27,6 +26,13 @@ CREATE TABLE PRODUCTS (
     PRIMARY KEY (product_id), 
     FOREIGN KEY (dept_id) REFERENCES DEPARTMENTS(dept_id)
      ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE PRODUCTKEYWORDMAP (
+	keyword VARCHAR(255) NOT NULL, 
+    product_id INT NOT NULL,
+	FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) 
+	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE USERS (
