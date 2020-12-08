@@ -25,6 +25,7 @@ FROM PRODUCTS
 WHERE isFeatured=1;
 
 -- Given a product, list all keyword-related products
+-- E.g., with given product_id = 25
 SELECT * 
 FROM PRODUCTS 
 WHERE product_id IN(
@@ -38,6 +39,7 @@ WHERE product_id IN(
 );
 
 -- Given dep, list all its products (title, description, price) with their average rating
+-- E.g., with given dept_id = "home/books/course/maths/"
 SELECT P.product_id, P.name, P.description, P.price, AVG(stars) AS average_rating 
 FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id) 
 WHERE P.dept_id = "home/books/course/maths/"
