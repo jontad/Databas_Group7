@@ -37,10 +37,11 @@ WHERE product_id IN(
     )
 );
 
--- Given a department, list all of its products with average rating
-SELECT P.name, P.description, P.price, AVG(stars) AS average_rating
-FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id)
-WHERE P.dept_id = "home/electronics/computer/laptop/";
+-- Given dep, list all its products (title, description, price) with their average rating
+SELECT P.product_id, P.name, P.description, P.price, AVG(stars) AS average_rating 
+FROM (PRODUCTS AS P JOIN REVIEWS AS R ON P.product_id=R.product_id) 
+WHERE P.dept_id = "home/books/course/maths/"
+GROUP BY P.product_id;
 
 -- List all products on sale sorted by discount %
 SELECT name, price, discount 
